@@ -1,5 +1,10 @@
 const transform = async () => {
-    // Write your code here 
+    
+    return new TransformStream({
+        transform(chunk, controller) {
+          controller.enqueue(chunk.toUpperCase());
+        },
+      });
 };
 
 await transform();
