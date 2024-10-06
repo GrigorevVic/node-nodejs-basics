@@ -6,6 +6,9 @@ const compress = async () => {
   const readableStream = createReadStream("./src/zip/files/fileToCompress.txt");
   const writeStream = createWriteStream("./src/zip/files/archive.gz");
   readableStream.pipe(gzip).pipe(writeStream);
+  readableStream.on('error', (e) => {
+    console.log('Error!!!', e.message);
+  });
 };
 
 await compress();
